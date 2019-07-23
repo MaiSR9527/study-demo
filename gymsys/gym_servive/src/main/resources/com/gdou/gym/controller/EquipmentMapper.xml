@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdou.gym.pojo.EquipmentMapper">
+  <resultMap id="BaseResultMap" type="com.gdou.gym.pojo.Equipment">
+    <!--@mbg.generated-->
+    <id column="equip_id" jdbcType="INTEGER" property="equipId" />
+    <result column="equip_name" jdbcType="VARCHAR" property="equipName" />
+    <result column="total_num" jdbcType="INTEGER" property="totalNum" />
+    <result column="valid_num" jdbcType="INTEGER" property="validNum" />
+    <result column="maintain_num" jdbcType="INTEGER" property="maintainNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    equip_id, equip_name, total_num, valid_num, maintain_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from equipment
+    where equip_id = #{equipId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from equipment
+    where equip_id = #{equipId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="equip_id" keyProperty="equipId" parameterType="com.gdou.gym.pojo.Equipment" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into equipment (equip_name, total_num, valid_num, 
+      maintain_num)
+    values (#{equipName,jdbcType=VARCHAR}, #{totalNum,jdbcType=INTEGER}, #{validNum,jdbcType=INTEGER}, 
+      #{maintainNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="equip_id" keyProperty="equipId" parameterType="com.gdou.gym.pojo.Equipment" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into equipment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="equipName != null">
+        equip_name,
+      </if>
+      <if test="totalNum != null">
+        total_num,
+      </if>
+      <if test="validNum != null">
+        valid_num,
+      </if>
+      <if test="maintainNum != null">
+        maintain_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="equipName != null">
+        #{equipName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null">
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="validNum != null">
+        #{validNum,jdbcType=INTEGER},
+      </if>
+      <if test="maintainNum != null">
+        #{maintainNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gdou.gym.pojo.Equipment">
+    <!--@mbg.generated-->
+    update equipment
+    <set>
+      <if test="equipName != null">
+        equip_name = #{equipName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null">
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="validNum != null">
+        valid_num = #{validNum,jdbcType=INTEGER},
+      </if>
+      <if test="maintainNum != null">
+        maintain_num = #{maintainNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where equip_id = #{equipId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gdou.gym.pojo.Equipment">
+    <!--@mbg.generated-->
+    update equipment
+    set equip_name = #{equipName,jdbcType=VARCHAR},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      valid_num = #{validNum,jdbcType=INTEGER},
+      maintain_num = #{maintainNum,jdbcType=INTEGER}
+    where equip_id = #{equipId,jdbcType=INTEGER}
+  </update>
+</mapper>

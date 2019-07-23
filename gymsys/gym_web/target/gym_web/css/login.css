@@ -1,0 +1,7 @@
+span.center{
+    position: relative;
+    left: 128px;
+}
+.login-box-body,.register-box-body{
+    height: 250px;
+}

@@ -1,0 +1,4 @@
+span.search:hover{
+    cursor: pointer;
+    z-index: 9;
+}

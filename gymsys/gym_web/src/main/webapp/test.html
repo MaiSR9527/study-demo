@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="el">
+    <input type="text" id="id1" v-model="oDate"><br>
+    <input type="text" id="id2" v-model="day"><br>
+    <input type="text" id="id3" v-model.lazy="rDate"><br>
+    <button type="button" id="confirm">确认</button>
+</div>
+
+<script src="js/jquery-3.4.0.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:"#el",
+        data:{
+            rDate:"",
+            day:"",
+            oDate:""
+        },
+        watch:{
+            day : function () {
+                var date = this.oDate;
+                var day = this.day;
+                date = date.replace(/-/g, '/');
+                var timestamp = new Date(date).getTime();
+
+                console.log(timestamp);
+                console.log(timestamp + day * 86400000);
+
+                var time = timestamp + day * 86400000;
+                var temp = new Date(time);
+                Y = temp.getFullYear() + '-';
+                M = (temp.getMonth() + 1 < 10 ? '0' + (temp.getMonth() + 1) : temp.getMonth() + 1) + '-';
+                D = temp.getDate() + ' ';
+                this.rDate = Y + M + D;
+                console.log(Y + M + D);
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
